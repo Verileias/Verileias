@@ -1,6 +1,3 @@
-
-<!DOCTYPE html>
-<!-- original:https://codepen.io/boudra/pen/raErwP -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +7,7 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: transparent;
-  height: 100vh;
+ 	 height: 100%;
 }
 
 .wrapper {
@@ -26,19 +23,19 @@ button::-moz-focus-inner {
 }
 
 #calendari {
-    margin: 10px 0;
+    margin: 0;
     position: fixed;
     overflow: hidden;
-    height: 35vh;
-    width: 34vh;
-    font-size: 10px;
+    height: 37vh;
+    width: 36vh;
+    font-size: 8px;
   border-radius:5%;
   background-color: rgb(249, 250, 251);
 }
 table {
     border-collapse: collapse;
     table-layout: fixed;
-    width: 34vh;
+    width: 36vh;
     background-color: rgb(249, 250, 251);
     position: absolute;
     top: 0;
@@ -63,10 +60,10 @@ td,th {
     background-color: rgb(249, 250, 251);
 }
 th {
-    padding: 10px;
+    padding: 12px;
 }
 tr:first-child th {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     border-left: none;
     border-top: none;
@@ -76,9 +73,9 @@ td:last-child, th:last-child {
 }
 
 th {
+	font-size: 12px;
     background-color: rgb(244, 143, 177);
     color: #fff;
-    text-shadow: 0px -1px 0px rgba(0,0,0,0.2);
     font-weight: normal;
 }
 th .any {
@@ -89,7 +86,7 @@ th .any {
     color: rgba(0,0,0,0.4);
 }
 tr:nth-child(2) th {
-    padding: 5px;
+    padding: 12px 5px;
 }
 td {
     padding: 0;
@@ -98,12 +95,10 @@ td>span {
     color: #333;
     padding: 8px;
     display: block;
+	font-size: 12px;
     transition: border 0.3s ease;
 }
 
-td:nth-child(even)>span {
-    background-color: rgba(0,0,0,0.02);
-}
 td:last-child>span,
 td:nth-child(6)>span {
     color: #bf7a92;
@@ -125,51 +120,39 @@ td > span:hover {
   margin:2px
 }
 .boto-next, .boto-prev {
-    background: rgba(0,0,0,0.1);
+	background-color: transparent;
     color: #fff;
     font-family: inherit;
     border: none;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     text-shadow: inherit;
     padding: 2px 10px 5px 10px;
     line-height: 1px;
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
     vertical-align: middle;
-    border-radius: 100%;
     position: absolute;
-    top: 15px;
+    top: 12px;
 }
 .boto-next { right: 10px; padding-left: 13px; }
 .boto-prev { left: 10px; padding-right: 13px;}
 .boto-next:hover,
 .boto-prev:hover {
-    background: rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.1);
+	border-radius: 50%;
+	 height: 20px;
+    width: 20px
 }
 button:hover { cursor: pointer; }
 button:focus { outline: none; }
 
-footer {
-  text-align: center;
-  color: #ddd;
-  font-weight: normal;
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2);
-  font-size: 0.8em;
-  padding: 20px;
-}
-
-footer a,
-footer a:link {
-  color: #fff;
-  text-decoration: none;
-}
 </style>
+</head>
 <body>
 <div class="wrapper">
   <div id="calendari"></div>
 </div>
-
 <script>
 var mesos = [
     'Janeiro',
@@ -187,13 +170,13 @@ var mesos = [
 ];
 
 var dies = [
-    'Diumenge',
-    'Dilluns',
-    'Dimarts',
-    'Dimecres',
-    'Dijous',
-    'Divendres',
-    'Dissabte'
+    'Domingo',
+    'Segunda',
+    'Terça',
+    'Quarta',
+    'Quinta',
+    'Sexta',
+    'Sábado'
 ];
 
 var dies_abr = [
@@ -250,15 +233,15 @@ function calendari(widget, data)
 
     var boto_prev = document.createElement('button');
     boto_prev.className = 'boto-prev';
-    boto_prev.innerHTML = '&#9666;';
+    boto_prev.innerHTML = '<';
 
     var boto_next = document.createElement('button');
     boto_next.className = 'boto-next';
-    boto_next.innerHTML = '&#9656;';
+    boto_next.innerHTML = '>';
 
     titol.appendChild(boto_prev);
     titol.appendChild(document.createElement('span')).innerHTML =
-        mesos[data.getMonth()] + '<span class="any">' + data.getFullYear() + '</span>';
+        mesos[data.getMonth()]  + '&nbsp;' +  data.getFullYear();
 
     titol.appendChild(boto_next);
 
@@ -279,10 +262,10 @@ function calendari(widget, data)
 
     for(var i = 1; i < 7; i++)
     {
-        fila.innerHTML += '<th>' + dies_abr[i] + '</th>';
+        fila.innerHTML += '<th style="background-color:#f9fafb;color:#fa6e9d">' + dies_abr[i] + '</th>';
     }
 
-    fila.innerHTML += '<th>' + dies_abr[0] + '</th>';
+    fila.innerHTML += '<th style="background-color:#f9fafb;color:#fa6e9d">' + dies_abr[0] + '</th>';
     e.appendChild(fila);
 
     /* Obtinc el dia que va acabar el mes anterior */
@@ -342,4 +325,5 @@ function calendari(widget, data)
 
 calendari(document.getElementById('calendari'), new Date());
 </script></body>
+	
 </html>
