@@ -318,17 +318,10 @@ function calendari(widget, data)
             if(data.getDate() == actual.getDate() &&
 	       data.getMonth() == actual.getMonth())
 		cela.className = 'avui';
-  /* Si es avui el decorem */
-            if(data.getDate() == actual.getDate() &&
-	       data.getMonth() == actual.getMonth())
-		cela.className = 'avui';
-		
 		
 	    actual.setDate(actual.getDate()+1);
             fila.appendChild(cela);
         }
-  var dt = new Date( "December 28" );
-         document.write("getMonth() : " + dt.getMonth() ); 
         e.appendChild(fila);
     }
 
